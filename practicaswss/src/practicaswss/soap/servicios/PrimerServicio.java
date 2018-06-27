@@ -1,5 +1,8 @@
 package practicaswss.soap.servicios;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import javax.jws.WebService;
 import javax.xml.ws.Holder;
 
@@ -87,6 +90,17 @@ public class PrimerServicio implements PrimerServicio_SEI {
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void subirFichero(String nombreFichero, String tipoMime, byte[] fichero) {
+		
+		//En java 8 al estar en el try los close se hacen solos
+		try(FileOutputStream fos = new FileOutputStream("/tmp/"+nombreFichero)) {
+			fos.write(fichero);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

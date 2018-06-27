@@ -66,7 +66,16 @@ public interface PrimerServicio_SEI {
 			@WebParam(name="mensaje")
 			String mensaje
 	);
-		
+	@WebMethod(operationName="subirFichero") //Lo convierte a texto el binario
+	void subirFichero(
+			@WebParam(name="nombreFichero")
+			String nombreFichero,
+			@WebParam(name="tipoMime")
+			String tipoMime,
+			@WebParam(name="fichero")
+			byte[] fichero
+	);
+	
 	
 	
 }
