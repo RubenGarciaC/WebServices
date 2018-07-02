@@ -57,7 +57,7 @@ public class PortalServicios {
 		System.out.println(
 				documento.getClass().getName());
 		
-		SOAPMessageContext soapCtx = 
+	/*	SOAPMessageContext soapCtx = 
 					(SOAPMessageContext) ctx.getMessageContext();
 
 		//	msg.getMessage().getSOAPBody(). Para leer
@@ -73,7 +73,7 @@ public class PortalServicios {
 						);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}*/
 	}
 	
 	
