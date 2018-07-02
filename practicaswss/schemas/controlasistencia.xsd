@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://acme.com/documentos" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://acme.com/documentos">
+
+
+    <complexType name="encabezado">
+    	<sequence>
+    		<element name="empresaBonificada" type="string"
+    			minOccurs="1" maxOccurs="1">
+    		</element>
+    		<element name="entidad" type="string" minOccurs="1" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+
+    <complexType name="asistente">
+    	<sequence>
+    		<element name="nombre" type="string"></element>
+    		<element name="apellidos" type="string"></element>
+    		<element name="nif" type="string"></element>
+    		<element name="observaciones" type="string" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+
+    <element name="parteAsistencia" type="tns:TipoAsistencia"></element>
+
+    <complexType name="TipoAsistencia">
+    	<sequence>
+    		<element name="Empresa" type="tns:encabezado"></element>
+    		<element name="Asistentes" type="tns:asistente"></element>
+    	</sequence>
+    </complexType>
+</schema>
