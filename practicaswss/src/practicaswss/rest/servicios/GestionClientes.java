@@ -1,6 +1,7 @@
 package practicaswss.rest.servicios;
 
 import java.net.HttpURLConnection;
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.annotation.PostConstruct;
@@ -54,12 +55,24 @@ public class GestionClientes {
 
 			//return Response.noContent().entity("El cliente no existe").type("text/plain").build();
 			//para evitar el 202 
-			return Response.status(HttpURLConnection.HTTP_NOT_FOUND).build();
-			
+			return Response.status(HttpURLConnection.HTTP_NOT_FOUND).type("text/plain").build();
 		}
 		
-		
+	}
+	
+	@GET  //Coge por efecto sin barra si no le pasas parámetros
+	@Path("/")
+	public Collection<Cliente> todosLosClientes(){
+		cargarDatos();
+		return tablaClientes.values();
 		
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }
