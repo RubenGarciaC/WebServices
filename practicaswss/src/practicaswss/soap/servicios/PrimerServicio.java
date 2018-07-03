@@ -3,6 +3,7 @@ package practicaswss.soap.servicios;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 import javax.xml.ws.Holder;
 
@@ -20,6 +21,7 @@ import javax.xml.ws.Holder;
 @WebService(endpointInterface = "practicaswss.soap.servicios.PrimerServicio_SEI",
 		portName = "OperacionesBasicas",
 		serviceName = "ServicioBasico")
+@HandlerChain(file = "handlers.xml") 
 public class PrimerServicio implements PrimerServicio_SEI {
 	
 	public double getTemperatura(String localidad) {

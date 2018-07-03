@@ -7,9 +7,12 @@ import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.lang.model.type.DeclaredType;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.rpc.handler.soap.SOAPMessageContext;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
@@ -22,6 +25,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
+
+import org.w3c.dom.Node;
 
 import practricaswss.documento.factura.Facturae;
 import practricaswss.documento.parte.TipoAsistencia;
@@ -53,9 +58,26 @@ public class PortalServicios {
 			@WebParam(name="documento")
 			Object documento) {
 		
+		
 		System.out.println("Clase del documento");
-		System.out.println(
-				documento.getClass().getName());
+		System.out.println(documento.getClass().getName());
+		
+		JAXBElement<TipoAsistencia> parte;
+		try {
+			JAXBContext context = JAXBContext.newInstance("practicaswss.documentos.parte");
+			
+			Unmarshaller unmarshaller = context.createUnmarshaller();
+			parte = unmarshaller.unmarshal(new DOMSource((Node) documento),
+					TipoAsistencia.class);
+			TipoAsistencia datos = parte.getValue();
+			System.out.println(datos.getEmpresa());
+			
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		
+
+		
 		
 	/*	SOAPMessageContext soapCtx = 
 					(SOAPMessageContext) ctx.getMessageContext();
